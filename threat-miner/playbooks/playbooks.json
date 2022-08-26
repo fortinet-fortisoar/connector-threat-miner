@@ -1,0 +1,504 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "08a22e79-ea3d-446c-b095-f782e34573b7",
+      "@type": "WorkflowCollection",
+      "name": "Sample - ThreatMiner - 1.0.0",
+      "description": "ThreatMiner is a threat intelligence portale that aggregates data from multiple open-source platforms like: VirusTotal, CIRCL etc... and enable analysts to research under a single interface. This connector enables users to create automated solutions to query against ThreatMiner's database.",
+      "visible": true,
+      "image": null,
+      "recordTags": [
+        "threat-miner"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "d04845b4-95b1-488d-bbe8-64576a7b0749",
+          "collection": "/api/3/workflow_collections/08a22e79-ea3d-446c-b095-f782e34573b7",
+          "triggerLimit": null,
+          "description": "Returns malware samples associated with domain based on the query performed.",
+          "name": "Get Domain Details",
+          "tag": "#ThreatMiner",
+          "recordTags": [
+            "threat-miner"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/48c3ac8e-8c84-4d03-8330-26206e447fe2",
+          "steps": [
+            {
+              "uuid": "48c3ac8e-8c84-4d03-8330-26206e447fe2",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "0ec7f15a-0711-4014-bd79-3e268a8d168a",
+                "title": "ThreatMiner: Get Domain Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "b2b3ac32-09a8-48eb-934f-d1165ca0385e",
+              "@type": "WorkflowStep",
+              "name": "Get Domain Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "ThreatMiner",
+                "config": "''",
+                "params": {
+                  "domain_name": "google.com"
+                },
+                "version": "1.0.0",
+                "connector": "threat-miner",
+                "operation": "get_domain_details",
+                "operationTitle": "Get Domain Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "911fd8cd-ce81-4ad5-9d51-f5d6085c69ca",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Domain Details",
+              "sourceStep": "/api/3/workflow_steps/48c3ac8e-8c84-4d03-8330-26206e447fe2",
+              "targetStep": "/api/3/workflow_steps/b2b3ac32-09a8-48eb-934f-d1165ca0385e"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "9460bae6-11b2-4302-a957-39d8108e66e9",
+          "collection": "/api/3/workflow_collections/08a22e79-ea3d-446c-b095-f782e34573b7",
+          "triggerLimit": null,
+          "description": "Returns malware samples associated with an IP address based on the query performed.",
+          "name": "Get IP Details",
+          "tag": "#ThreatMiner",
+          "recordTags": [
+            "threat-miner"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/e108fef5-9da4-48e6-8575-cca2a3701765",
+          "steps": [
+            {
+              "uuid": "e108fef5-9da4-48e6-8575-cca2a3701765",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "943b6e4c-3ed2-4dda-bd1c-3c4dc140681c",
+                "title": "ThreatMiner: Get IP Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "25734db7-3d3c-4473-a2fd-51482aa4d6b2",
+              "@type": "WorkflowStep",
+              "name": "Get IP Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "ThreatMiner",
+                "config": "''",
+                "params": {
+                  "ip_address": "216.58.213.110"
+                },
+                "version": "1.0.0",
+                "connector": "threat-miner",
+                "operation": "get_ip_details",
+                "operationTitle": "Get IP Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "975d17d9-6f3f-4c4b-9c27-58d718c3c7ff",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get IP Details",
+              "sourceStep": "/api/3/workflow_steps/e108fef5-9da4-48e6-8575-cca2a3701765",
+              "targetStep": "/api/3/workflow_steps/25734db7-3d3c-4473-a2fd-51482aa4d6b2"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "7837832f-8594-487d-9b0c-b09e94c59a33",
+          "collection": "/api/3/workflow_collections/08a22e79-ea3d-446c-b095-f782e34573b7",
+          "triggerLimit": null,
+          "description": "Returns known metadata of the given samples in the form of a note.",
+          "name": "Get Samples",
+          "tag": "#ThreatMiner",
+          "recordTags": [
+            "threat-miner"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/b7f06f43-d2bd-4d55-ae5e-fae27fad07fd",
+          "steps": [
+            {
+              "uuid": "b7f06f43-d2bd-4d55-ae5e-fae27fad07fd",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "3d909fd4-9ac0-4d13-9efc-bd884872e6d9",
+                "title": "ThreatMiner: Get Samples",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "170c6ac9-1a77-47e5-943c-c9003b4da9fd",
+              "@type": "WorkflowStep",
+              "name": "Get Samples",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "ThreatMiner",
+                "config": "''",
+                "params": {
+                  "file_hash": "e6ff1bf0821f00384cdd25efb9b1cc09"
+                },
+                "version": "1.0.0",
+                "connector": "threat-miner",
+                "operation": "get_file_details",
+                "operationTitle": "Get Samples",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "318dfa03-acf2-487d-a608-97c7f231c794",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Samples",
+              "sourceStep": "/api/3/workflow_steps/b7f06f43-d2bd-4d55-ae5e-fae27fad07fd",
+              "targetStep": "/api/3/workflow_steps/170c6ac9-1a77-47e5-943c-c9003b4da9fd"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "bdde4e00-1a12-4f3b-8439-db84efeb159e",
+          "collection": "/api/3/workflow_collections/08a22e79-ea3d-446c-b095-f782e34573b7",
+          "triggerLimit": null,
+          "description": "Reports samples,report tagging used in malware analysis to identify malware binaries that belong to the same family.",
+          "name": "Get Import Hash Details",
+          "tag": "#ThreatMiner",
+          "recordTags": [
+            "threat-miner"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/67ac7d3c-db0d-41db-8cf1-509aff267be1",
+          "steps": [
+            {
+              "uuid": "67ac7d3c-db0d-41db-8cf1-509aff267be1",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "3b89f4dc-63a5-4970-a655-7dea0fc50272",
+                "title": "ThreatMiner: Get Import Hash Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "d890e4eb-842f-4d45-94a1-5d99b0951a7a",
+              "@type": "WorkflowStep",
+              "name": "Get Import Hash Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "ThreatMiner",
+                "config": "''",
+                "params": {
+                  "imphash": "1f4f257947c1b713ca7f9bc25f914039"
+                },
+                "version": "1.0.0",
+                "connector": "threat-miner",
+                "operation": "get_import_hash_details",
+                "operationTitle": "Get Import Hash Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "510bc416-c0e0-41c2-8468-ca3f23781454",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Import Hash Details",
+              "sourceStep": "/api/3/workflow_steps/67ac7d3c-db0d-41db-8cf1-509aff267be1",
+              "targetStep": "/api/3/workflow_steps/d890e4eb-842f-4d45-94a1-5d99b0951a7a"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "8467ea1f-2665-42b0-be30-1067f294c732",
+          "collection": "/api/3/workflow_collections/08a22e79-ea3d-446c-b095-f782e34573b7",
+          "triggerLimit": null,
+          "description": "Retrieves the data that detect the level of similarity between two files at the binary level.",
+          "name": "Get SSDeep",
+          "tag": "#ThreatMiner",
+          "recordTags": [
+            "threat-miner"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/60cf2d08-e041-4caf-9d5f-a73585fc18d1",
+          "steps": [
+            {
+              "uuid": "60cf2d08-e041-4caf-9d5f-a73585fc18d1",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "91ac520d-0113-4b7e-a808-b59d5c89408e",
+                "title": "ThreatMiner: Get SSDeep",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "f1efad68-7e9b-4705-896f-70db8e468bac",
+              "@type": "WorkflowStep",
+              "name": "Get SSDeep",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "ThreatMiner",
+                "config": "''",
+                "params": {
+                  "ssdeep": "1536:TJsNrChuG2K6IVOTjWko8a9P6W3OEHBQc4w4:TJs0oG2KSTj3o8a9PFeEHn4l"
+                },
+                "version": "1.0.0",
+                "connector": "threat-miner",
+                "operation": "get_ssdeep_details",
+                "operationTitle": "Get SSDeep",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "c601f117-441b-4275-908e-f1b44fabd7df",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get SSDeep",
+              "sourceStep": "/api/3/workflow_steps/60cf2d08-e041-4caf-9d5f-a73585fc18d1",
+              "targetStep": "/api/3/workflow_steps/f1efad68-7e9b-4705-896f-70db8e468bac"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "6012376f-8d55-4063-9e93-5e89373d9874",
+          "collection": "/api/3/workflow_collections/08a22e79-ea3d-446c-b095-f782e34573b7",
+          "triggerLimit": null,
+          "description": "Email (Reverse WHOIS) allows you to search for domains by the name, address, telephone number, email address, or physical address of the Registrant listed in current or historical Whois records.",
+          "name": "Get Email Details",
+          "tag": "#ThreatMiner",
+          "recordTags": [
+            "threat-miner"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/445a37d8-2ceb-4c7d-9527-71e9446432b8",
+          "steps": [
+            {
+              "uuid": "445a37d8-2ceb-4c7d-9527-71e9446432b8",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "bc66e89a-bc26-4119-9cc7-9eacf4739846",
+                "title": "ThreatMiner: Get Email Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "5b03ec00-8580-4b43-8383-19cb2ad94713",
+              "@type": "WorkflowStep",
+              "name": "Get Email Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "ThreatMiner",
+                "config": "''",
+                "params": {
+                  "email": "7bf5721bfa009479c33f3c3cf4ea5392200f030e"
+                },
+                "version": "1.0.0",
+                "connector": "threat-miner",
+                "operation": "get_email_details",
+                "operationTitle": "Get Email Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "b481a2d7-e9f8-44a2-8c81-a60605488a48",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Email Details",
+              "sourceStep": "/api/3/workflow_steps/445a37d8-2ceb-4c7d-9527-71e9446432b8",
+              "targetStep": "/api/3/workflow_steps/5b03ec00-8580-4b43-8383-19cb2ad94713"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
