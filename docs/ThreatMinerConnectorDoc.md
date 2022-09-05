@@ -30,11 +30,11 @@ For the procedure to configure a connector, click [here](https://docs.fortinet.c
 
 ## Actions supported by the connector
 The following automated operations can be included in playbooks and you can also use the annotations to access operations from FortiSOAR&trade; release 4.10.0 and onwards:
-<table border=1><thead><tr><th>Function<br></th><th>Description<br></th><th>Annotation and Category<br></th></tr></thead><tbody><tr><td>Get Domain Details<br></td><td>Returns malware samples associated with domain based on the query performed.<br></td><td>domain_details <br/>Investigation<br></td></tr>
-<tr><td>Get IP Details<br></td><td>Returns malware samples associated with an IP address based on the query performed.<br></td><td>ip_details <br/>Investigation<br></td></tr>
-<tr><td>Get Samples<br></td><td>Returns known metadata of the given samples in the form of a note.<br></td><td>file_details <br/>Investigation<br></td></tr>
-<tr><td>Get Import Hash Details<br></td><td>Reports samples,report tagging used in malware analysis to identify malware binaries that belong to the same family.<br></td><td>import_hash_details <br/>Investigation<br></td></tr>
-<tr><td>Get SSDeep<br></td><td>Retrieves the data that detect the level of similarity between two files at the binary level.<br></td><td>ssdeep_details <br/>Investigation<br></td></tr>
+<table border=1><thead><tr><th>Function<br></th><th>Description<br></th><th>Annotation and Category<br></th></tr></thead><tbody><tr><td>Get Domain Details<br></td><td>Returns threat analysis details for the given domain based on the query performed.<br></td><td>get_domain_details <br/>Investigation<br></td></tr>
+<tr><td>Get IP Details<br></td><td>Returns threat analysis details for given IP address based on the query performed.<br></td><td>get_ip_details <br/>Investigation<br></td></tr>
+<tr><td>Get File Hash Details<br></td><td>Returns threat analysis details for given file hash based on the query performed.<br></td><td>get_file_hash_details <br/>Investigation<br></td></tr>
+<tr><td>Get Import Hash Details<br></td><td>Reports samples,report tagging used in malware analysis to identify malware binaries that belong to the same family.<br></td><td>get_import_hash_details <br/>Investigation<br></td></tr>
+<tr><td>Get SSDeep Details<br></td><td>Retrieves the data that detect the level of similarity between two files at the binary level.<br></td><td>get_ssdeep_details <br/>Investigation<br></td></tr>
 <tr><td>Get Email Details<br></td><td>Email (Reverse WHOIS) allows you to search for domains by the name, address, telephone number, email address, or physical address of the Registrant listed in current or historical Whois records.<br></td><td>email_reverse_whois_details <br/>Investigation<br></td></tr>
 </tbody></table>
 
@@ -53,8 +53,8 @@ The output contains the following populated JSON schema:
 </code><code><br>}</code>
 ### operation: Get IP Details
 #### Input parameters
-<table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>IP Address<br></td><td>Required IP address whose all related details needs to be retrieved.<br>
-</td></tr><tr><td>Query Type<br></td><td>Select the type of query that is how you want to perform get domain operation.<br>
+<table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>IP Address<br></td><td>Required IP address whose malware related details needs to be retrieved.<br>
+</td></tr><tr><td>Query Type<br></td><td>Select the type of query that is how you want to perform IP operation.<br>
 </td></tr></tbody></table>
 
 #### Output
@@ -64,9 +64,9 @@ The output contains the following populated JSON schema:
 </code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    "status_message": "",
 </code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    "results": []
 </code><code><br>}</code>
-### operation: Get Samples
+### operation: Get File Hash Details
 #### Input parameters
-<table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>File Hash<br></td><td>Retrieved the metadata for the specified file hash(md5, sha1, sha256).<br>
+<table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>File Hash<br></td><td>Requires a file hash(md5, sha1, sha256) to find malware analysis details.<br>
 </td></tr><tr><td>Query Type<br></td><td>Select the type of query that is how you want to perform samples operation.<br>
 </td></tr></tbody></table>
 
@@ -79,8 +79,7 @@ The output contains the following populated JSON schema:
 </code><code><br>}</code>
 ### operation: Get Import Hash Details
 #### Input parameters
-<table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>Imphash<br></td><td>It requires a hash value to retrieve the malware analysis report.<br>
-</td></tr><tr><td>Query Type<br></td><td>Select the type of query that is how you want to perform imphash operation.<br>
+<table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>Import Hash<br></td><td>It requires a import hash value to retrieve samples query type malware analysis report.<br>
 </td></tr></tbody></table>
 
 #### Output
@@ -90,10 +89,9 @@ The output contains the following populated JSON schema:
 </code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    "status_message": "",
 </code><code><br>&nbsp;&nbsp;&nbsp;&nbsp;    "results": []
 </code><code><br>}</code>
-### operation: Get SSDeep
+### operation: Get SSDeep Details
 #### Input parameters
-<table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>SSDeep<br></td><td>Provide the SSDeep hash value that attempts to detect the level of similarity between two files at the binary level.<br>
-</td></tr><tr><td>Query Type<br></td><td>Select the type of query that is how you want to perform SSDeep operation.<br>
+<table border=1><thead><tr><th>Parameter<br></th><th>Description<br></th></tr></thead><tbody><tr><td>SSDeep<br></td><td>Provide the SSDeep hash value that attempts to detect the level of similarity between two files at the binary level. By default Samples query type is used.<br>
 </td></tr></tbody></table>
 
 #### Output
@@ -119,10 +117,10 @@ The output contains the following populated JSON schema:
 The `Sample - threat-miner - 1.0.0` playbook collection comes bundled with the ThreatMiner connector. These playbooks contain steps using which you can perform all supported actions. You can see bundled playbooks in the **Automation** > **Playbooks** section in FortiSOAR<sup>TM</sup> after importing the ThreatMiner connector.
 
 - Get Domain Details
+- Get Email Details
+- Get File Details
 - Get IP Details
-- Get Samples
 - Get Import Hash Details
 - Get SSDeep
-- Get Email Details
 
 **Note**: If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.

@@ -66,7 +66,7 @@ class ThreatMiner(object):
             rt = 1
         elif q_type == 'Passive DNS':
             rt = 2
-        elif q_type == 'Related Samples (Hash only)':
+        elif q_type == 'Related Samples (hash only)':
             rt = 4
         elif q_type == 'SSL Certificates (hash only)':
             rt = 5
@@ -75,7 +75,7 @@ class ThreatMiner(object):
         endpoint = '/v2/host.php?q={0}&rt={1}'.format(params.get('ip_address'), rt)
         return self.make_api_call(endpoint=endpoint)
 
-    def get_file_details(self, params):
+    def get_file_hash_details(self, params):
         q_type = params.get('query_type')
         if q_type == 'Metadata':
             rt = 1
@@ -93,17 +93,11 @@ class ThreatMiner(object):
         return self.make_api_call(endpoint=endpoint)
 
     def get_import_hash_details(self, params):
-        q_type = params.get('query_type')
-        if q_type == 'Samples':
-            rt = 1
-        endpoint = '/v2/imphash.php?q={0}&rt={1}'.format(params.get('imphash'), rt)
+        endpoint = '/v2/imphash.php?q={0}&rt=1'.format(params.get('imphash'))
         return self.make_api_call(endpoint=endpoint)
 
     def get_ssdeep_details(self, params):
-        q_type = params.get('query_type')
-        if q_type == 'Samples':
-            rt = 1
-        endpoint = '/v2/ssdeep.php?q={0}&rt={1}'.format(params.get('ssdeep'), rt)
+        endpoint = '/v2/ssdeep.php?q={0}&rt=1'.format(params.get('ssdeep'))
         return self.make_api_call(endpoint=endpoint)
 
     def get_email_details(self, params):

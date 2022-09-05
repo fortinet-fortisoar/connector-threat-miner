@@ -30,9 +30,9 @@
         {
             "title": "Get Domain Details",
             "operation": "get_domain_details",
-            "description": "Returns malware samples associated with domain based on the query performed.",
+            "description": "Returns threat analysis details for the given domain based on the query performed.",
             "category": "investigation",
-            "annotation": "domain_details",
+            "annotation": "get_domain_details",
             "output_schema": [
                 {
                     "status_code": "",
@@ -77,8 +77,8 @@
             "title": "Get IP Details",
             "operation": "get_ip_details",
             "category": "investigation",
-            "description": "Returns malware samples associated with an IP address based on the query performed.",
-            "annotation": "ip_details",
+            "description": "Returns threat analysis details for given IP address based on the query performed.",
+            "annotation": "get_ip_details",
             "output_schema": [
                 {
                     "status_code": "",
@@ -96,7 +96,7 @@
                     "editable": true,
                     "value": "216.58.213.110",
                     "placeholder": "e.g: 216.58.213.110",
-                    "description": "Required IP address whose all related details needs to be retrieved.",
+                    "description": "Required IP address whose malware related details needs to be retrieved.",
                     "tooltip": "Required IP address whose all related details needs to be retrieved."
                 },
                 {
@@ -106,8 +106,8 @@
 					"required": true,
 					"visible": true,
 					"editable": true,
-                    "description": "Select the type of query that is how you want to perform get domain operation.",
-                    "tooltip": "Select the type of query that is how you want to perform get domain operation.",
+                    "description": "Select the type of query that is how you want to perform IP operation.",
+                    "tooltip": "Select the type of query that is how you want to perform IP operation.",
 					"options": [
 						"WHOIS",
 						"Passive DNS",
@@ -119,11 +119,11 @@
             ]
         },
         {
-            "title": "Get Samples",
-            "operation": "get_file_details",
+            "title": "Get File Hash Details",
+            "operation": "get_file_hash_details",
             "category": "investigation",
-            "description": "Returns known metadata of the given samples in the form of a note.",
-            "annotation": "file_details",
+            "description": "Returns threat analysis details for given file hash based on the query performed.",
+            "annotation": "get_file_hash_details",
             "output_schema": [
                 {
                     "status_code": "",
@@ -141,8 +141,8 @@
                     "editable": true,
                     "value": "e6ff1bf0821f00384cdd25efb9b1cc09",
                     "placeholder": "e.g: e6ff1bf0821f00384cdd25efb9b1cc09",
-                    "description": "Retrieved the metadata for the specified file hash(md5, sha1, sha256).",
-                    "tooltip": "Retrieved the metadata for the specified file hash(md5, sha1, sha256)."
+                    "description": "Requires a file hash(md5, sha1, sha256) to find malware analysis details.",
+                    "tooltip": "Requires a file hash(md5, sha1, sha256) to find malware analysis details."
                 },
                 {
 					"title": "Query Type",
@@ -169,7 +169,7 @@
             "operation": "get_import_hash_details",
             "category": "investigation",
             "description": "Reports samples,report tagging used in malware analysis to identify malware binaries that belong to the same family.",
-            "annotation": "import_hash_details",
+            "annotation": "get_import_hash_details",
             "output_schema": [
                 {
                     "status_code": "",
@@ -179,7 +179,7 @@
             ],
             "parameters": [
                 {
-                    "title": "Imphash",
+                    "title": "Import Hash",
                     "type": "text",
                     "name": "imphash",
                     "required": true,
@@ -187,30 +187,17 @@
                     "editable": true,
                     "value": "1f4f257947c1b713ca7f9bc25f914039",
                     "placeholder": "e.g: 1f4f257947c1b713ca7f9bc25f914039",
-                    "description": "It requires a hash value to retrieve the malware analysis report.",
-                    "tooltip": "It requires a hash value to retrieve the malware analysis report."
-                },
-                {
-					"title": "Query Type",
-					"type": "select",
-					"name": "query_type",
-					"required": true,
-					"visible": true,
-					"editable": true,
-                    "description": "Select the type of query that is how you want to perform imphash operation.",
-                    "tooltip": "Select the type of query that is how you want to perform imphash operation.",
-					"options": [
-						"Samples"
-					]
+                    "description": "It requires a import hash value to retrieve samples query type malware analysis report.",
+                    "tooltip": "It requires a import hash value to retrieve samples query type malware analysis report."
                 }
             ]
         },
 		{
-            "title": "Get SSDeep",
+            "title": "Get SSDeep Details",
             "operation": "get_ssdeep_details",
             "category": "investigation",
             "description": "Retrieves the data that detect the level of similarity between two files at the binary level.",
-            "annotation": "ssdeep_details",
+            "annotation": "get_ssdeep_details",
             "output_schema": [
                 {
                     "status_code": "",
@@ -228,21 +215,8 @@
                     "editable": true,
                     "value": "1536:TJsNrChuG2K6IVOTjWko8a9P6W3OEHBQc4w4:TJs0oG2KSTj3o8a9PFeEHn4l",
                     "placeholder": "e.g: 1536:TJsNrChuG2K6IVOTjWko8a9P6W3OEHBQc4w4:TJs0oG2KSTj3o8a9PFeEHn4l",
-                    "description": "Provide the SSDeep hash value that attempts to detect the level of similarity between two files at the binary level.",
-                    "tooltip": "Provide the SSDeep hash value that attempts to detect the level of similarity between two files at the binary level."
-                },
-                {
-					"title": "Query Type",
-					"type": "select",
-					"name": "query_type",
-					"required": true,
-					"visible": true,
-					"editable": true,
-                    "description": "Select the type of query that is how you want to perform SSDeep operation.",
-                    "tooltip": "Select the type that is how you want to perform SSDeep operation.",
-					"options": [
-						"Samples"
-					]
+                    "description": "Provide the SSDeep hash value that attempts to detect the level of similarity between two files at the binary level. By default Samples query type is used.",
+                    "tooltip": "Provide the SSDeep hash value that attempts to detect the level of similarity between two files at the binary level. By default Samples query type is used."
                 }
             ]
         },
