@@ -1,0 +1,252 @@
+{
+    "name": "threat-miner",
+    "version": "1.0.0",
+    "label": "ThreatMiner",
+    "description": "ThreatMiner is a threat intelligence portale that aggregates data from multiple open-source platforms like: VirusTotal, CIRCL etc... and enable analysts to research under a single interface. This connector enables users to create automated solutions to query against ThreatMiner's database.",
+    "publisher": "spryIQ.co",
+    "icon_small_name": "ThreatMiner_32x32.png",
+    "icon_large_name": "ThreatMiner_80x80.png",
+    "help_online": "https://github.com/bidisha-spryiq/connector-threat-miner/blob/develop/docs/ThreatMinerConnectorDoc.md",
+    "cs_compatible": true,
+    "cs_approved": false,
+    "category": "Threat Intelligence",
+    "configuration": {
+        "fields": [
+            {
+                "title": "Server URL",
+                "type": "text",
+                "name": "server",
+                "description": "URL of the threat-miner connector to access the connector website.",
+                "tooltip": "URL of the threat-miner connector to access the connector website.",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": "api.threatminer.org",
+                "placeholder": "Eg : https://api.threatminer.org or api.threatminer.org"
+            }
+        ]
+    },
+    "operations": [
+        {
+            "title": "Get Domain Details",
+            "operation": "get_domain_details",
+            "description": "Returns threat analysis details for the given domain based on the query performed.",
+            "category": "investigation",
+            "annotation": "get_domain_details",
+            "output_schema": [
+                {
+                    "status_code": "",
+                    "status_message": "",
+                    "results": []
+                }
+            ],
+            "parameters": [
+                {
+                    "title": "Domain Name",
+                    "type": "text",
+                    "name": "domain_name",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "google.com",
+                    "placeholder": "e.g: google.com",
+                    "description": "Domain name required for retrieving malware samples associated with the domain.",
+                    "tooltip": "Domain name required for retrieving malware samples associated with the domain."
+                },
+                {
+					"title": "Query Type",
+					"type": "select",
+					"name": "query_type",
+					"required": true,
+					"visible": true,
+					"editable": true,
+                    "description": "Select the type of query that is how you want to perform get domain operation.",
+                    "tooltip": "Select the type of query that is how you want to perform get domain operation.",
+					"options": [
+						"WHOIS",
+						"Passive DNS",
+						"Example Query URI",
+                        "Related Samples (hash only)",
+						"Subdomains",
+						"Report tagging"
+					]
+				}
+            ]
+        },
+        {
+            "title": "Get IP Details",
+            "operation": "get_ip_details",
+            "category": "investigation",
+            "description": "Returns threat analysis details for given IP address based on the query performed.",
+            "annotation": "get_ip_details",
+            "output_schema": [
+                {
+                    "status_code": "",
+                    "status_message": "",
+                    "results": []
+                }
+            ],
+            "parameters": [
+                {
+                    "title": "IP Address",
+                    "type": "text",
+                    "name": "ip_address",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "216.58.213.110",
+                    "placeholder": "e.g: 216.58.213.110",
+                    "description": "Required IP address whose malware related details needs to be retrieved.",
+                    "tooltip": "Required IP address whose all related details needs to be retrieved."
+                },
+                {
+					"title": "Query Type",
+					"type": "select",
+					"name": "query_type",
+					"required": true,
+					"visible": true,
+					"editable": true,
+                    "description": "Select the type of query that is how you want to perform IP operation.",
+                    "tooltip": "Select the type of query that is how you want to perform IP operation.",
+					"options": [
+						"WHOIS",
+						"Passive DNS",
+                        "Related Samples (hash only)",
+						"SSL Certificates (hash only)",
+						"Report tagging"
+					]
+				}
+            ]
+        },
+        {
+            "title": "Get File Hash Details",
+            "operation": "get_file_hash_details",
+            "category": "investigation",
+            "description": "Returns threat analysis details for given file hash based on the query performed.",
+            "annotation": "get_file_hash_details",
+            "output_schema": [
+                {
+                    "status_code": "",
+                    "status_message": "",
+                    "results": []
+                }
+            ],
+            "parameters": [
+                {
+                    "title": "File Hash",
+                    "type": "text",
+                    "name": "file_hash",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "e6ff1bf0821f00384cdd25efb9b1cc09",
+                    "placeholder": "e.g: e6ff1bf0821f00384cdd25efb9b1cc09",
+                    "description": "Requires a file hash(md5, sha1, sha256) to find malware analysis details.",
+                    "tooltip": "Requires a file hash(md5, sha1, sha256) to find malware analysis details."
+                },
+                {
+					"title": "Query Type",
+					"type": "select",
+					"name": "query_type",
+					"required": true,
+					"visible": true,
+					"editable": true,
+                    "description": "Select the type of query that is how you want to perform samples operation.",
+                    "tooltip": "Select the type of query that is how you want to perform samples operation.",
+					"options": [
+						"Metadata",
+						"HTTP Traffic",
+						"Hosts (domains and IPs)",
+                        "Mutants",
+						"AV detections",
+                        "Report tagging"
+					]
+				}
+            ]
+        },
+		{
+            "title": "Get Import Hash Details",
+            "operation": "get_import_hash_details",
+            "category": "investigation",
+            "description": "Reports samples,report tagging used in malware analysis to identify malware binaries that belong to the same family.",
+            "annotation": "get_import_hash_details",
+            "output_schema": [
+                {
+                    "status_code": "",
+                    "status_message": "",
+                    "results": []
+                }
+            ],
+            "parameters": [
+                {
+                    "title": "Import Hash",
+                    "type": "text",
+                    "name": "imphash",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "1f4f257947c1b713ca7f9bc25f914039",
+                    "placeholder": "e.g: 1f4f257947c1b713ca7f9bc25f914039",
+                    "description": "It requires a import hash value to retrieve samples query type malware analysis report.",
+                    "tooltip": "It requires a import hash value to retrieve samples query type malware analysis report."
+                }
+            ]
+        },
+		{
+            "title": "Get SSDeep Details",
+            "operation": "get_ssdeep_details",
+            "category": "investigation",
+            "description": "Retrieves the data that detect the level of similarity between two files at the binary level.",
+            "annotation": "get_ssdeep_details",
+            "output_schema": [
+                {
+                    "status_code": "",
+                    "status_message": "",
+                    "results": []
+                }
+            ],
+            "parameters": [
+                {
+                    "title": "SSDeep",
+                    "type": "text",
+                    "name": "ssdeep",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "1536:TJsNrChuG2K6IVOTjWko8a9P6W3OEHBQc4w4:TJs0oG2KSTj3o8a9PFeEHn4l",
+                    "placeholder": "e.g: 1536:TJsNrChuG2K6IVOTjWko8a9P6W3OEHBQc4w4:TJs0oG2KSTj3o8a9PFeEHn4l",
+                    "description": "Provide the SSDeep hash value that attempts to detect the level of similarity between two files at the binary level. By default Samples query type is used.",
+                    "tooltip": "Provide the SSDeep hash value that attempts to detect the level of similarity between two files at the binary level. By default Samples query type is used."
+                }
+            ]
+        },
+		{
+            "title": "Get Email Details",
+            "operation": "get_email_details",
+            "category": "investigation",
+            "description": "Email (Reverse WHOIS) allows you to search for domains by the name, address, telephone number, email address, or physical address of the Registrant listed in current or historical Whois records.",
+            "annotation": "email_reverse_whois_details",
+            "output_schema": [
+                {
+                    "status_code": "",
+                    "status_message": "",
+                    "results": []
+                }
+            ],
+            "parameters": [
+                {
+                    "title": "Email (Reverse WHOIS)",
+                    "type": "text",
+                    "name": "email",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "7bf5721bfa009479c33f3c3cf4ea5392200f030e",
+                    "placeholder": "e.g: 7bf5721bfa009479c33f3c3cf4ea5392200f030e",
+                    "description": "Required email address (SHA1 only) value to retrieved Whois records.",
+                    "tooltip": "Required email address (SHA1 only) value to retrieved Whois records."
+                }
+            ]
+        }
+    ]
+}
