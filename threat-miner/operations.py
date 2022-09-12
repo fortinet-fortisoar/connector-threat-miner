@@ -6,6 +6,7 @@
 
 import requests
 from connectors.core.connector import get_logger, ConnectorError
+
 logger = get_logger('threatminer')
 
 
@@ -30,7 +31,8 @@ class ThreatMiner(object):
                         'Converting the response into JSON format after returning with status code: {0}'.format(
                             response.status_code))
                     response_data = response.json()
-                    return {'status': response_data['status'] if 'status' in response_data else 'Success', 'data': response_data}
+                    return {'status': response_data['status'] if 'status' in response_data else 'Success',
+                            'data': response_data}
                 except Exception as e:
                     response_data = response.content
                     logger.error('Failed with an error: {0}. The response details are: {1}'.format(e, response_data))
